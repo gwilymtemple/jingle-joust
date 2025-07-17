@@ -84,8 +84,35 @@
   </audio>
 
   <script>
-    const songs = [...]; // unchanged for brevity
-    const brands = [...];
+    const songs = [
+      "Britney Spears – Toxic", "Beyoncé – Crazy in Love", "Adele – Rolling in the Deep",
+      "Lady Gaga – Bad Romance", "Taylor Swift – Shake It Off", "Katy Perry – Firework",
+      "Justin Timberlake – Can’t Stop the Feeling!", "Ed Sheeran – Shape of You",
+      "Rihanna – Umbrella", "Dua Lipa – Levitating", "Maroon 5 – Sugar", "Sia – Chandelier",
+      "Bruno Mars – Uptown Funk", "Billie Eilish – Bad Guy", "Olivia Rodrigo – Drivers License",
+      "The Weeknd – Blinding Lights", "Harry Styles – As It Was", "Lorde – Royals",
+      "Sam Smith – Stay With Me", "One Direction – What Makes You Beautiful",
+      "Post Malone – Circles", "Ariana Grande – Thank U, Next", "Justin Bieber – Sorry",
+      "Miley Cyrus – Flowers", "Coldplay – Viva La Vida", "P!nk – Just Give Me a Reason",
+      "Kelly Clarkson – Since U Been Gone", "Kesha – Tik Tok", "Imagine Dragons – Radioactive",
+      "Lizzo – Truth Hurts", "Shakira – Hips Don’t Lie", "Tones and I – Dance Monkey",
+      "Gotye – Somebody That I Used to Know", "Nelly Furtado – Promiscuous",
+      "Avril Lavigne – Complicated", "Black Eyed Peas – I Gotta Feeling",
+      "Flo Rida – Low", "Christina Aguilera – Beautiful", "Jason Derulo – Want to Want Me",
+      "Camila Cabello – Havana", "Shawn Mendes – Stitches", "Calvin Harris – Summer",
+      "Ellie Goulding – Love Me Like You Do", "George Ezra – Shotgun",
+      "MGMT – Electric Feel", "OutKast – Hey Ya!", "The Chainsmokers – Closer",
+      "Doja Cat – Say So", "Charli XCX – Boom Clap", "Troye Sivan – Youth"
+    ];
+
+    const brands = [
+      "Apple", "McDonald’s", "Nike", "Coca-Cola", "Google", "Amazon", "Microsoft", "Samsung",
+      "Toyota", "Netflix", "Facebook (Meta)", "Adidas", "Starbucks", "IKEA", "Disney", "KFC",
+      "H&M", "Tesco", "Coles", "Woolworths", "Qantas", "British Airways", "Virgin", "Red Bull",
+      "Zara", "BP", "Unilever", "Nestlé", "Sony", "Uber", "Airbnb", "ASOS", "Aldi", "Heineken",
+      "L’Oréal", "Dove", "TikTok", "LinkedIn", "ANZ", "Barclays", "HSBC", "Optus", "Telstra",
+      "Vodafone", "Bunnings", "JB Hi-Fi", "Target", "Cadbury", "LEGO", "Domino’s Pizza"
+    ];
 
     const button = document.getElementById("goButton");
     const songPanel = document.getElementById("songPanel");
@@ -128,3 +155,4 @@
   </script>
 </body>
 </html>
+
