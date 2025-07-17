@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jingle Joust Generator</title>
+  <style>
+    body {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    #goButton {
+      background-color: red;
+      color: white;
+      font-size: 3em;
+      padding: 1em 2em;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-bottom: 40px;
+      box-shadow: 0 6px #b30000, 0 8px 20px rgba(0,0,0,0.2);
+      transition: transform 0.1s ease;
+    }
+
+    #goButton:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px #b30000, 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .panel {
+      width: 80%;
+      max-width: 500px;
+      height: 100px;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+      font-size: 1.5em;
+      border-radius: 8px;
+    }
+
+    .pulse {
+      animation: rainbow 0.5s infinite;
+    }
+
+    @keyframes rainbow {
+      0% { background-color: red; }
+      16% { background-color: orange; }
+      33% { background-color: yellow; }
+      50% { background-color: green; }
+      66% { background-color: blue; }
+      83% { background-color: indigo; }
+      100% { background-color: violet; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Viv and Val's Jingle Joust Generator 🤺</h1>
+  <button id="goButton">Go!</button>
+  <div id="songPanel" class="panel"></div>
+  <div id="brandPanel" class="panel"></div>
+
+  <audio id="bellSound" preload="auto">
+    <source src="https://www.soundjay.com/button/beep-07.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <audio id="dingSound" preload="auto">
+    <source src="https://www.soundjay.com/button/button-16.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const songs = [
+      "Britney Spears – Toxic", "Beyoncé – Crazy in Love", "Adele – Rolling in the Deep",
+      "Lady Gaga – Bad Romance", "Taylor Swift – Shake It Off", "Katy Perry – Firework",
+      "Justin Timberlake – Can’t Stop the Feeling!", "Ed Sheeran – Shape of You",
+      "Rihanna – Umbrella", "Dua Lipa – Levitating", "Maroon 5 – Sugar", "Sia – Chandelier",
+      "Bruno Mars – Uptown Funk", "Billie Eilish – Bad Guy", "Olivia Rodrigo – Drivers License",
+      "The Weeknd – Blinding Lights", "Harry Styles – As It Was", "Lorde – Royals",
+      "Sam Smith – Stay With Me", "One Direction – What Makes You Beautiful",
+      "Post Malone – Circles", "Ariana Grande – Thank U, Next", "Justin Bieber – Sorry",
+      "Miley Cyrus – Flowers", "Coldplay – Viva La Vida", "P!nk – Just Give Me a Reason",
+      "Kelly Clarkson – Since U Been Gone", "Kesha – Tik Tok", "Imagine Dragons – Radioactive",
+      "Lizzo – Truth Hurts", "Shakira – Hips Don’t Lie", "Tones and I – Dance Monkey",
+      "Gotye – Somebody That I Used to Know", "Nelly Furtado – Promiscuous",
+      "Avril Lavigne – Complicated", "Black Eyed Peas – I Gotta Feeling",
+      "Flo Rida – Low", "Christina Aguilera – Beautiful", "Jason Derulo – Want to Want Me",
+      "Camila Cabello – Havana", "Shawn Mendes – Stitches", "Calvin Harris – Summer",
+      "Ellie Goulding – Love Me Like You Do", "George Ezra – Shotgun",
+      "MGMT – Electric Feel", "OutKast – Hey Ya!", "The Chainsmokers – Closer",
+      "Doja Cat – Say So", "Charli XCX – Boom Clap", "Troye Sivan – Youth"
+    ];
+
+    const brands = [
+      "Apple", "McDonald’s", "Nike", "Coca-Cola", "Google", "Amazon", "Microsoft", "Samsung",
+      "Toyota", "Netflix", "Facebook (Meta)", "Adidas", "Starbucks", "IKEA", "Disney", "KFC",
+      "H&M", "Tesco", "Coles", "Woolworths", "Qantas", "British Airways", "Virgin", "Red Bull",
+      "Zara", "BP", "Unilever", "Nestlé", "Sony", "Uber", "Airbnb", "ASOS", "Aldi", "Heineken",
+      "L’Oréal", "Dove", "TikTok", "LinkedIn", "ANZ", "Barclays", "HSBC", "Optus", "Telstra",
+      "Vodafone", "Bunnings", "JB Hi-Fi", "Target", "Cadbury", "LEGO", "Domino’s Pizza"
+    ];
+
+    const button = document.getElementById("goButton");
+    const songPanel = document.getElementById("songPanel");
+    const brandPanel = document.getElementById("brandPanel");
+    const bell = document.getElementById("bellSound");
+    const ding = document.getElementById("dingSound");
+
+    function getRandomItem(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    // Preload sounds with silent user-triggered playback
+    document.body.addEventListener('click', () => {
+      bell.volume = 0;
+      ding.volume = 0;
+      bell.play().then(() => bell.pause());
+      ding.play().then(() => ding.pause());
+      bell.volume = 1;
+      ding.volume = 1;
+    }, { once: true });
+
+    button.addEventListener("click", () => {
+      songPanel.textContent = "";
+      brandPanel.textContent = "";
+
+      songPanel.classList.add("pulse");
+      brandPanel.classList.add("pulse");
+
+      setTimeout(() => {
+        songPanel.classList.remove("pulse");
+        brandPanel.classList.remove("pulse");
+        bell.play();
+
+        songPanel.textContent = getRandomItem(songs);
+        brandPanel.textContent = getRandomItem(brands);
+
+        ding.play();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
